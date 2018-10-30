@@ -8,4 +8,11 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.post('/login', function(req, res, next) {
+  res.render('game', {
+    title: 'Boozemotor',
+    name: req.body.name
+  });
+})
+
 module.exports = router;

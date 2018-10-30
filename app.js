@@ -9,8 +9,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-var Game = require('./gamelogic/game.js');
-var newGame = new Game();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

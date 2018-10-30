@@ -4,7 +4,7 @@ var shuffle = require('shuffle-array');
 
 class Deck {
   constructor() {
-    this.deck = [];
+    this.cards = [];
     this.createDeck();
   }
 
@@ -13,15 +13,17 @@ class Deck {
       let element = cardlist[j];
       for (let i = 0; i < element.quantity_total; i++) {
         let newCard = new Card(element.name, element.goal, element.quantity_needed, element.quantity_total, element.text);
-        this.deck.push(newCard);
+        this.cards.push(newCard);
       }
     }
-    shuffle(this.deck)
+    shuffle(this.cards);
   }
 
   deal() {
-    let card = this.deck.shift();
-    return card;
+    if (this.cards.length > 0) {
+      let card = this.cards.shift();
+      return card;
+    }
   }
 }
 

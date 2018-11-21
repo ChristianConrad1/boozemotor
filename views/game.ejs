@@ -13,18 +13,36 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.css">
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-  <script>
-    const socket = io();
-    var username = " <%= name %> "
-    socket.emit('join', username);
-  </script>
+  <script src="/javascripts/main.js"></script>
 
 </head>
 
 <body>
-  <h1><%= title %></h1>
+  <main>
+    <section id="cards">
+      <ul id="cardList"></ul>
+    </section>
+    <section id="game">
 
+    </section>
+    <section id="money">
+      <div class="row" id="moneyList">
+      </div>
+    </section>
+  </main>
+  <footer class="page-footer teal">
+    <div class="row">
+      <div class="col s4">
+        <a id="myCards">Deine Karten</a>
+      </div>
+      <div class="col s4">
+        <a id="topCard">Spielbrett</a>
+      </div>
+      <div class="col s4">
+        <a id="myMoney">Dein Geld</a>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>

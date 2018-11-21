@@ -7,27 +7,31 @@ class Game {
     this.topCard = this.deck.deal();
     this.cardPool = [];
     this.isRunning = false;
-
-
-    //
-    this.addPlayer("Peter");
-    this.addPlayer("Paul");
-    this.addPlayer("Otto");
-    this.addPlayer("Manni");
-    this.addPlayer("Thorsten");
-    this.bet([10, 10, 3, 10, 11]);
-    //
-
+    this.betArray = [];
   }
 
-  addPlayer(name) {
+  addPlayer(name, callback) {
     let id = this.players.length;
     let newPlayer = new Player(name, id);
     this.players.push(newPlayer);
+    callback(id);
   }
 
-  bet(moneyArray) {
-    console.log(this.topCard.name);
+  bet(playerID, money, callback) {
+    if (this.players[playerID].money.includes(money)) {
+      this.betArray[playerID] = money;
+      this.players[playerID].money.splice(this.players[playerID].money.findIndex(k => k == money), 1);
+      if (!this.betArray.includes(undefined)) {
+        this.endRound();
+      }
+      callback(202);
+    } else {
+      callback(400);
+    }
+  }
+
+  endRound() {
+    let moneyArray = this.betArray;
     let winnercard = 0;
     if (this.topCard.goal === "low") {
       winnercard = 99;
@@ -74,8 +78,8 @@ class Game {
       this.cardPool.push(this.topCard);
     }
     if (this.deck.cards.length > 0) {
+      this.betArray = [];
       this.topCard = this.deck.deal();
-      this.bet([10, 10, 3, 10, 11]);
     }
 
   }

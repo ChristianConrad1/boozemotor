@@ -19,23 +19,6 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-var io = require('socket.io')(server);
-var Game = require('../gamelogic/game.js');
-var newGame = new Game();
-
-/**
- * Socket.IO Handling
- */
-
-io.on('connection', function(socket) {
-  socket.on('join', function(name) {
-    if (newGame.players.length <= 6) {
-      socket.name = name;
-      newGame.addPlayer(name);
-    }
-
-  })
-});
 
 /**
  * Listen on provided port, on all network interfaces.

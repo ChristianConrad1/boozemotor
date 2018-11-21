@@ -23,6 +23,9 @@ class Deck {
     if (this.cards.length > 0) {
       let card = this.cards.shift();
       return card;
+    } else {
+      return false;
+
     }
   }
 }
